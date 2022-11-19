@@ -1,4 +1,4 @@
-<div class="">
+<div class="form">
     <form action="{{route('point.add')}}" method="post">
         @csrf
         <div>

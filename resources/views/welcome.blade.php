@@ -7,15 +7,24 @@
         <title>Laravel PostgreSql demo task</title>
         <style>
             html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}
-            #id{
+            #map{
                 width: 100%;
                 height: 460px;
+            }
+            .container{width: 90%; max-width: 1440px;}
+            .form{
+                background-color: rgb(243, 244, 246);
+                padding: 1.5em;
+                border: 1px solid #e5e7eb;
+                border-radius: 15px;
             }
         </style>
     </head>
     <body>
+    <div class="container">
         @include('form')
         <div id="map"></div>
+    </div>
         <script type='text/javascript' src='https://cdn.polyfill.io/v2/polyfill.min.js?ver=2.0.0'></script>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
