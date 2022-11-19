@@ -63,7 +63,8 @@
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkCODI1n53Gz1uN9rY_boH53kq5eUPIl8&callback=initMap&v=weekly" defer></script>
-        <script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
             var points = {!! json_encode($points) !!},
                 markers = {},
                 map,
@@ -105,6 +106,17 @@
             function removeMarker(point){
                 if( typeof markers[point.id] != "undefined" ) markers[point.id].setMap(null);
             }
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
             $('form').on('submit', function (e){
                 e.preventDefault();
                 e.stopPropagation();
@@ -114,8 +126,19 @@
                     url: form.action,
                     method: form.method,
                     data:$(form).serialize(),
-                    success:function (){console.log(arguments)},
-                    error: function (){console.log(arguments)}
+                    success:function (){
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Marker was added successfully'
+                        })
+                    },
+                    error: function (xhr){
+                        Toast.fire({
+                            icon: 'success',
+                            title: xhr.responseJSON.message
+                        })
+                        console.log(arguments)
+                    }
                 });
                 return false;
             });
