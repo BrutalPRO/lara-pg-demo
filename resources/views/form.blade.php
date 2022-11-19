@@ -1,5 +1,6 @@
 <div class="">
     <form action="{{route('point.add')}}" method="post">
+        @csrf
         <label>Latitude*:<br>
             <input type="number" name="latitude" step="0.000001" min="-90" max="90" required="required" /></label>
         <label>Longitude*:<br>
