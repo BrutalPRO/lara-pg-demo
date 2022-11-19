@@ -24,11 +24,13 @@
                 padding: 1.5em;
                 border: 1px solid rgb(229, 231, 235);
                 border-radius: 15px;
+                margin-bottom: 25px;
             }
             @media (min-width: 768px) {
                 .form form{
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
                 }
             }
             label{margin: 15px 0; display: flex; align-items: center;
@@ -46,6 +48,8 @@
             input{
                 font-size: .875rem;
                 line-height: 1.25rem;
+                flex: 1 1 0;
+                outline: 0!important;
             }
         </style>
     </head>
@@ -101,6 +105,20 @@
             function removeMarker(point){
                 if( typeof markers[point.id] != "undefined" ) markers[point.id].setMap(null);
             }
+            $('form').on('submit', function (e){
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                var form = this;
+                $.ajax({
+                    url: form.action,
+                    method: form.method,
+                    data:$(form).serialize(),
+                    success:function (){console.log(arguments)},
+                    error: function (){console.log(arguments)}
+                });
+                return false;
+            });
         </script>
     </body>
 </html>
