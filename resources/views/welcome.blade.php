@@ -8,6 +8,12 @@
         <style>
             html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}
             html,body{min-height: 100%;padding: 0;margin: 0}
+            html{
+                background-color: rgb(229, 231, 235);
+            }
+            body{
+
+            }
             #map{
                 width: 100%;
                 height: 460px;
@@ -20,12 +26,27 @@
                 border-radius: 15px;
             }
             @media (min-width: 768px) {
-                .form{
+                .form form{
                     display: flex;
                     justify-content: space-between;
                 }
             }
-            label{margin: 15px 0;}
+            label{margin: 15px 0; display: flex; align-items: center;
+                border: 1px solid #e5e7eb;
+                border-radius: 5px;
+            }
+            .label{
+                font-size: .875rem;
+                line-height: 1.25rem;
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                background-color: rgb(249, 250, 251);
+
+            }
+            input{
+                font-size: .875rem;
+                line-height: 1.25rem;
+            }
         </style>
     </head>
     <body>
