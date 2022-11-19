@@ -13,7 +13,7 @@
     </head>
     <body>
         @include('form')
-        <div class="map"></div>
+        <div id="map"></div>
         <script type='text/javascript' src='https://cdn.polyfill.io/v2/polyfill.min.js?ver=2.0.0'></script>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>

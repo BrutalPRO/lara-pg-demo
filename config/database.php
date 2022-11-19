@@ -130,10 +130,10 @@ return [
 
         'default' => [
             'url' => env('REDIS_URL'),
-            'host' => $redisUrl['host'],
+/*            'host' => $redisUrl['host'],
             'username' => $redisUrl['user'],
             'password' => $redisUrl['pass'],
-            'port' => $redisUrl['port'],
+            'port' => $redisUrl['port'],*/
             'database' => '', //substr($redisUrl["path"], 1),
         ],
 
