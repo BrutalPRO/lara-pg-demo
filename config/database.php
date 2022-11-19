@@ -2,12 +2,9 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv("DATABASE_URL"));
+$dbUrl = parse_url(getenv("DATABASE_URL"));
+$redisUrl = parse_url(env('REDIS_URL'));
 
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
 
 return [
 
@@ -72,10 +69,10 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'host'     => $dbUrl["host"],
+            'database' => substr($dbUrl["path"], 1),
+            'username' => $dbUrl["user"],
+            'password' => $dbUrl["pass"],
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
@@ -124,7 +121,7 @@ return [
 
     'redis' => [
 
-        'client' => env('REDIS_CLIENT', 'phpredis'),
+        'client' => env('REDIS_CLIENT', 'predis'),
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
@@ -133,11 +130,11 @@ return [
 
         'default' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => env('REDIS_DB', '0'),
+            'host' => $redisUrl['host'],
+            'username' => $redisUrl['user'],
+            'password' => $redisUrl['pass'],
+            'port' => $redisUrl['port'],
+            'database' => substr($redisUrl["path"], 1),
         ],
 
         'cache' => [

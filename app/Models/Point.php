@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use App\Events\PointProcessed;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Notifications\Notifiable;
+
+class Point extends Model
+{
+    use Prunable, Notifiable;
+
+    /**
+     * Карта событий для модели.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => PointProcessed::class,
+        'deleting' => PointProcessed::class,
+    ];
+
+    public function prunable()
+    {
+        return static::where('created_at', '<=', now()->subMinute());
+    }
+}
