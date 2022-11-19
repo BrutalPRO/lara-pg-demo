@@ -11,6 +11,8 @@ class Point extends Model
 {
     use Prunable, Notifiable;
 
+    protected $fillable = ['latitude','longitude', 'label'];
+
     /**
      * Карта событий для модели.
      *
