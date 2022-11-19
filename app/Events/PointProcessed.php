@@ -30,7 +30,6 @@ class PointProcessed implements ShouldBroadcast
     public function __construct(Point $point)
     {
         $this->point = $point;
-        $this->broadcastVia('pusher');
     }
 
     /**
