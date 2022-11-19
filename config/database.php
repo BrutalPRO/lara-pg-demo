@@ -134,7 +134,7 @@ return [
             'username' => $redisUrl['user'],
             'password' => $redisUrl['pass'],
             'port' => $redisUrl['port'],
-            'database' => substr($redisUrl["path"], 1),
+            'database' => '', //substr($redisUrl["path"], 1),
         ],
 
         'cache' => [

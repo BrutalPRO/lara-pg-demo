@@ -10,6 +10,7 @@
         </style>
     </head>
     <body>
-
+        @include('form')
+        <div class="map"></div>
     </body>
 </html>
