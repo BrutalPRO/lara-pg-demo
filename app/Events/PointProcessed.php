@@ -41,4 +41,9 @@ class PointProcessed implements ShouldBroadcast
     {
         return new Channel('points');
     }
+
+    public function broadcastAs()
+    {
+        return 'watch';
+    }
 }
