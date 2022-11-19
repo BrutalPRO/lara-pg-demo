@@ -116,7 +116,7 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
-            })
+            });
             $('form').on('submit', function (e){
                 e.preventDefault();
                 e.stopPropagation();
