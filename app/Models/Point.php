@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\PointDeleted;
 use App\Events\PointProcessed;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
@@ -20,11 +21,12 @@ class Point extends Model
      */
     protected $dispatchesEvents = [
         'created' => PointProcessed::class,
-        'deleting' => PointProcessed::class,
+        'deleting' => PointDeleted::class,
     ];
 
     public function prunable()
     {
         return static::where('created_at', '<=', now()->subMinute());
     }
+
 }

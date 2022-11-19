@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PointProcessed implements ShouldBroadcast
+class PointDeleted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels, InteractsWithBroadcasting;
 
@@ -42,6 +42,6 @@ class PointProcessed implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'actual';
+        return 'remove';
     }
 }

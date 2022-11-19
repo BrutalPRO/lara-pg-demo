@@ -14,12 +14,15 @@
     <body>
         @include('form')
         <div class="map"></div>
-        <script
-            src="https://code.jquery.com/jquery-3.6.1.min.js"
-            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-            crossorigin="anonymous"></script>
+        <script type='text/javascript' src='https://cdn.polyfill.io/v2/polyfill.min.js?ver=2.0.0'></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkCODI1n53Gz1uN9rY_boH53kq5eUPIl8&callback=initMap&v=weekly" defer></script>
         <script>
+            var points = {!! json_encode($points) !!},
+                markers = {},
+                map,
+                isInitMap = false;
 
             // Enable pusher logging - don't include this in production
             Pusher.logToConsole = true;
@@ -29,9 +32,34 @@
             });
 
             var channel = pusher.subscribe('points');
-            channel.bind('watch', function(data) {
-                alert(JSON.stringify(data));
+            channel.bind('actual', function(data) {
+                if( Pusher.logToConsole ) console.log(JSON.stringify(data));
+                addMarker(data.point);
+            }).bind('remove', function(data) {
+                if( Pusher.logToConsole ) console.log(JSON.stringify(data));
+                removeMarker(data.point);
             });
+
+            function initMap(){
+                map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 4,
+                    center:  new google.maps.LatLng(0, 0),
+                });
+                points.map(function (point){
+                    addMarker(point);
+                });
+                isInitMap = true;
+            }
+            function addMarker(point){
+                markers[point.id] = new google.maps.Marker({
+                    position: { lat: point.latitude, lng: point.longitude },
+                    map,
+                    title: point.label,
+                });
+            }
+            function removeMarker(point){
+                if( typeof markers[point.id] != "undefined" ) markers[point.id].setMap(null);
+            }
         </script>
     </body>
 </html>
