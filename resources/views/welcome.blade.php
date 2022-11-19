@@ -4,11 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
         <title>Laravel PostgreSql demo task</title>
         <style>
             html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}
+            #id{
+                width: 100%;
+                height: 460px;
+            }
         </style>
     </head>
     <body>
@@ -52,7 +54,7 @@
             }
             function addMarker(point){
                 markers[point.id] = new google.maps.Marker({
-                    position: { lat: point.latitude, lng: point.longitude },
+                    position: { lat: parseFloat(point.latitude), lng: parseFloat(point.longitude) },
                     map,
                     title: point.label,
                 });
