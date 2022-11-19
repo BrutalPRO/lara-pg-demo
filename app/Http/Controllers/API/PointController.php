@@ -16,6 +16,7 @@ class PointController extends Controller
 //            $validated
 //        );
         $point = Point::create( $validated );
+        broadcast(new PointProcessed($point))->toOthers();
         return $point;
     }
 }
