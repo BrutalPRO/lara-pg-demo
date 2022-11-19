@@ -26,7 +26,7 @@ class Point extends Model
 
     public function prunable()
     {
-        return static::where('created_at', '<=', now());
+        return static::where('created_at', '<=', now()->subMinute());
     }
 
 }
