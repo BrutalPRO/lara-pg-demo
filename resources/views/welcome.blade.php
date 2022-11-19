@@ -100,7 +100,7 @@
                 markers[point.id] = new google.maps.Marker({
                     position: { lat: parseFloat(point.latitude), lng: parseFloat(point.longitude) },
                     map,
-                    title: point.label,
+                    label: point.label,
                 });
             }
             function removeMarker(point){
