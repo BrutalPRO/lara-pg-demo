@@ -134,7 +134,7 @@
                     },
                     error: function (xhr){
                         Toast.fire({
-                            icon: 'success',
+                            icon: 'error',
                             title: xhr.responseJSON.message
                         })
                         console.log(arguments)
