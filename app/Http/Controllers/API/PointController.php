@@ -11,10 +11,11 @@ class PointController extends Controller
     public function store(StorePointRequest $request)
     {
         $validated = $request->validated();
-        $point = Point::firstOrCreate(
-            ['latitude' => $validated['latitude'], 'longitude' => $validated['longitude']],
-            $validated
-        );
+//        $point = Point::firstOrCreate(
+//            ['latitude' => $validated['latitude'], 'longitude' => $validated['longitude']],
+//            $validated
+//        );
+        $point = Point::create( $validated );
         return $point;
     }
 }
