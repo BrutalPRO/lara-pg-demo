@@ -3,7 +3,7 @@
 use Illuminate\Support\Str;
 
 $dbUrl = parse_url(getenv("DATABASE_URL"));
-$redisUrl = parse_url(env('REDIS_URL'));
+$redisUrl = parse_url(getenv('REDIS_URL'));
 
 
 return [
