@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Point;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PointController;
 
 Route::post('/store',[PointController::class, 'store'])->name('point.add');
+
+Route::get('/all',function (Request $request){
+    return Point::all();
+})->name('point.all');
